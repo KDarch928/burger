@@ -3,7 +3,9 @@ var mysql = require("mysql");
 //setting up access to the .env file
 require("dotenv").config();
 //getting access to the key.js file
-var key = require("../config/key.js");
+var key = require("./key.js");
+
+console.log(key);
 
 var connection = mysql.createConnection({
     port: 3306,
