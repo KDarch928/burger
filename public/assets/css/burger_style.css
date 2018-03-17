@@ -9,13 +9,28 @@ img {
     max-width: 30%;
 }
 
+ul {
+    list-style-type:none;
+    text-align: center;
+}
+
+#non-dev-background {
+    background-color: white;
+    margin: 2%;
+    padding: 2%;
+}
+
+#dev-background {
+    background-color: white;
+}
+
 #form-area {
     margin-top:2%;
     margin-bottom: 2%;
 }
 
 #burger-text {
-    width: 40%;
+    width: 60%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
