@@ -16,12 +16,18 @@ ul {
 
 #non-dev-background {
     background-color: white;
-    margin: 2%;
+    /*margin: 2%;*/
+    margin-top: 2%;
+    margin-bottom: .25%;
     padding: 2%;
 }
 
 #dev-background {
     background-color: white;
+    margin-bottom: .25%;
+    /*margin-left: 2%;*/
+    /*margin-right: 2%;*/
+    padding: 2%;
 }
 
 #form-area {

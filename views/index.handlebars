@@ -7,6 +7,7 @@
     </div>
     <div class="row" id="burger-view">
         <div class="col-md-6 text-center" id="non-devoured-view">
+            <h4 class="text-center">Burgers Available to Eat</h4>
             <ul>
                 {{#each burgers}}
                     {{#unless devoured}}
@@ -14,7 +15,7 @@
                             <li id="non-dev-background">
                                 {{id}} . {{burger_name}}
                             </li>
-                            <button type="submit" data-id="{{this.id}}" class="btn btn-primary btn-sm">Devour it!</button>
+                            <button type="submit" data-id="{{this.id}}" data-burger_name="{{this.burger_name}}" class="btn btn-primary btn-sm btn-block change-dev">Devour it!</button>
                         </form>
                         <!--<li id="non-dev-background">-->
                             <!--{{id}} . {{burger_name}}-->
@@ -24,10 +25,8 @@
                 {{/each}}
             </ul>
         </div>
-        <div class="col-md-1">
-
-        </div>
-        <div class="col-md-5text-center" id="devoured-view">
+        <div class="col-md-6 text-center" id="devoured-view">
+            <h4 class="text-center">Burger Eaten!</h4>
             <ul>
                 {{#each burgers}}
                     {{#if devoured}}
@@ -41,11 +40,34 @@
     </div>
     <div class="row">
         <div class="col-md-12 text-center" id="form-area">
+            <p>Enter a burger you want to eat Click the "Submit" button.</p>
             <form action="/api/burgers" method="post">
                 <textarea class="form-control form-group" name="burger_name" rows="5" id="burger-text"></textarea>
                 <button type="submit" class="btn btn-info">Submit</button>
             </form>
-            <p>Enter a burger you want to eat Click the "Submit" button.</p>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(".change-dev").on("click", function(event) {
+        var id = $(this).data("id");
+        var burgerNam = $(this).data("burger_name");
+
+        var newDevourState = {
+            devoured: true
+        };
+
+        // Send the PUT request.
+        $.ajax("/api/burgers/" + id, {
+            type: "PUT",
+            data: newDevourState
+        }).then(
+                function() {
+                    console.log("changed " + burgerNam + " to " + newDevourState.devoured);
+                    // Reload the page to get the updated list
+                    location.reload();
+                }
+        );
+    });
+</script>
